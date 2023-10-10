@@ -1,0 +1,25 @@
+MDBoxLayout:
+    orientation: "vertical"
+    MDTopAppBar:
+        title: "Our DB simple App"
+        left_action_items: [["menu"]]
+        elevation: 4
+    MDLabel:
+        text: "Available Items"
+        halign: "center"
+    MDLabel:
+        id: item
+        text: "No Items are available now"
+        halign: "center"
+    MDTextField:
+        id: item_name
+        hint_text: "Enter Item name"
+        multline: False
+    MDRectangleFlatButton:
+        text: "Submit Item"
+        size_hint:(1,.5)
+        on_press: app.submit()
+    MDRectangleFlatButton:
+        text: "Show Items"
+        size_hint:(1,.5)
+        on_press: app.show_items()
