@@ -15,7 +15,7 @@ class MyApp(MDApp):
         db_display = Builder.load_file("btel_db.kv")
         return db_display
 
-    def submit(self):
+    def submit_user(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
         c.execute("INSERT INTO users VALUES (:fname, :lname, :contact)",
@@ -33,14 +33,14 @@ class MyApp(MDApp):
         con.commit()
         con.close()
 
-    def show_items(self):
+    def show_users(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
-        c.execute("SELECT * FROM Items")
-        items = c.fetchall()
+        c.execute("SELECT * FROM Users")
+        users = c.fetchall()
         data = ""
-        for item in items:
-            data = f'{data}\n {item[0]}'
+        for user in users:
+            data = f'{data}\n {user[0]} {user[1]}'
             self.root.ids.item.text = f'{data}'
         con.commit()
         con.close()

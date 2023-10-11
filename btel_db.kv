@@ -12,14 +12,22 @@ MDBoxLayout:
         text: "No Items are available now"
         halign: "center"
     MDTextField:
-        id: item_name
-        hint_text: "Enter Item name"
+        id: fname
+        hint_text: "Enter first name"
+        multline: False
+    MDTextField:
+        id: lname
+        hint_text: "Enter last name"
+        multline: False
+    MDTextField:
+        id: contact
+        hint_text: "contact"
         multline: False
     MDRectangleFlatButton:
-        text: "Submit Item"
+        text: "Submit User"
         size_hint:(1,.5)
         on_press: app.submit()
     MDRectangleFlatButton:
-        text: "Show Items"
+        text: "Show Users"
         size_hint:(1,.5)
-        on_press: app.show_items()
+        on_press: app.show_users()
