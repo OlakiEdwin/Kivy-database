@@ -18,14 +18,18 @@ class MyApp(MDApp):
     def submit(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
-        c.execute("INSERT INTO Items VALUES (:item_name)",
+        c.execute("INSERT INTO users VALUES (:fname, :lname, :contact)",
                   {
-                      "item_name": self.root.ids.item_name.text,
+                      "fname": self.root.ids.fname.text,
+                      "lname": self.root.ids.lname.text,
+                      "contact": self.root.ids.contact.text,
                   }
                   )
-        self.root.ids.item.text = f'{self.root.ids.item_name.text} has been added'
+        self.root.ids.item.text = f'{self.root.ids.fname.text} has been added'
         # self.root.ids.item.text = "item successfully inserted into db"
-        self.root.ids.item_name.text = ""
+        self.root.ids.fname.text = ""
+        self.root.ids.lname.text = ""
+        self.root.ids.contact.text = ""
         con.commit()
         con.close()
 
