@@ -9,7 +9,7 @@ class MyApp(MDApp):
     def build(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
-        c.execute("CREATE TABLE if not exists Items(item_name text)")
+        c.execute("CREATE TABLE if not exists users(fname text, lname text, contact text)")
         con.commit()
         con.close()
         db_display = Builder.load_file("btel_db.kv")
@@ -18,7 +18,7 @@ class MyApp(MDApp):
     def submit_user(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
-        c.execute("INSERT INTO users VALUES (:fname, :lname, :contact)",
+        c.execute("INSERT INTO users (fname, lname, contact) VALUES (:fname, :lname, :contact)",
                   {
                       "fname": self.root.ids.fname.text,
                       "lname": self.root.ids.lname.text,
@@ -26,7 +26,6 @@ class MyApp(MDApp):
                   }
                   )
         self.root.ids.item.text = f'{self.root.ids.fname.text} has been added'
-        # self.root.ids.item.text = "item successfully inserted into db"
         self.root.ids.fname.text = ""
         self.root.ids.lname.text = ""
         self.root.ids.contact.text = ""
@@ -36,12 +35,12 @@ class MyApp(MDApp):
     def show_users(self):
         con = sqlite3.connect("btel.db")
         c = con.cursor()
-        c.execute("SELECT * FROM Users")
+        c.execute("SELECT * FROM users")
         users = c.fetchall()
         data = ""
         for user in users:
-            data = f'{data}\n {user[0]} {user[1]}'
-            self.root.ids.item.text = f'{data}'
+            data += f'{user[0]} {user[1]} - Contact: {user[2]}\n'
+        self.root.ids.item.text = data
         con.commit()
         con.close()
 

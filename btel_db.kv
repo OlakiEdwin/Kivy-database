@@ -5,11 +5,11 @@ MDBoxLayout:
         left_action_items: [["menu"]]
         elevation: 4
     MDLabel:
-        text: "Available Items"
+        text: "Available Users"
         halign: "center"
     MDLabel:
         id: item
-        text: "No Items are available now"
+        text: "No Users are available now"
         halign: "center"
     MDTextField:
         id: fname
@@ -21,13 +21,13 @@ MDBoxLayout:
         multline: False
     MDTextField:
         id: contact
-        hint_text: "contact"
+        hint_text: "Enter Contact"
         multline: False
     MDRectangleFlatButton:
         text: "Submit User"
-        size_hint:(1,.5)
-        on_press: app.submit()
+        size_hint: (1, .5)
+        on_press: app.submit_user()
     MDRectangleFlatButton:
         text: "Show Users"
-        size_hint:(1,.5)
+        size_hint: (1, .5)
         on_press: app.show_users()
